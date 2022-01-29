@@ -1,13 +1,16 @@
 def iug_load_gmag_wdc_relpath(sname,trange,addmaster,*extra,level='all',res='min'):
+    from pyspedas.utilities.dailynames import dailynames
     dir_wdc=[]
     prefix=[]
     suffix=[]
     relpathnames=[]
     
-    #fileformat='yyMM'
-    #dirformat='YYYY/'
-    
-    relpathnames=''
+    fileformat='%Y/'
+    dirformat='%y%M'
+    #trange=['yy-mm-dd','yy-mm-dd']
+    hour_res=False
+    if(res=="hour"):
+        hour_res=True
     
     if(sname.lower()=='dst'):
         res='hour'
@@ -47,7 +50,6 @@ def iug_load_gmag_wdc_relpath(sname,trange,addmaster,*extra,level='all',res='min
             suffix.append('')
     for i in range(len(dir_wdc)):
         #have not made this func yet
-        file_daily=file_dailynames([dir_wdc[i],prefix[i],suffix[i],dir_format=dirformat,file_format=fileformat,trange=trange,addmaster=addmaster)
-        #
+        file_daily=dailynames(directory=dir_wdc[i],prefix=prefix[i],suffix=suffix[i],file_format=fileformat,trange=trange,hour_res=hour_res)#,dir_format=dirformat,addmaster=addmaster)
         relpathnames.append(file_daily)
     return(relpathnames)
