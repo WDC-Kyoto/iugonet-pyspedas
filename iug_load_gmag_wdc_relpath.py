@@ -4,6 +4,7 @@ def iug_load_gmag_wdc_relpath(sname,trange,addmaster,*extra,level='all',res='min
     prefix=[]
     suffix=[]
     relpathnames=[]
+    #yashimakazuki
     
     fileformat='%Y/'
     dirformat='%y%M'
