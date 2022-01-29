@@ -1,10 +1,10 @@
-def iug_load_gmag_wdc_relpath(sname,trange,addmaster,*extra,level='all',res='min'):
+def iug_load_gmag_wdc_relpath(sname,trange,addmaster=False,*extra,level='all',res='min'):
     from pyspedas.utilities.dailynames import dailynames
+    import numpy as np
     dir_wdc=[]
     prefix=[]
     suffix=[]
     relpathnames=[]
-    #yashimakazuki
     
     fileformat='%Y/'
     dirformat='%y%M'
@@ -49,6 +49,8 @@ def iug_load_gmag_wdc_relpath(sname,trange,addmaster,*extra,level='all',res='min
             suffix.append('.wdc')
         else:
             suffix.append('')
+    #if(addmaster==True):
+     #   times=[np.nan,trange]
     for i in range(len(dir_wdc)):
         #have not made this func yet
         file_daily=dailynames(directory=dir_wdc[i],prefix=prefix[i],suffix=suffix[i],file_format=fileformat,trange=trange,hour_res=hour_res)#,dir_format=dirformat,addmaster=addmaster)
