@@ -1,7 +1,11 @@
 
 
 import download
-from html.parser import HTMLParser
+import numpy as np 
+from pyspedas.utilities.time_double import time_double  
+from pyspedas.utilities.time_string import time_string  
+from pytplot import store_data, options
+from pytplot import tplot
 
 
 
@@ -53,7 +57,7 @@ def qddays(trange=['2011-1-1', '2011-1-1']):
 				d4.append(data0[36:38])
 				d5.append(data0[38:40])  
 				
-	return 0
+	return 1
 
 
 
@@ -61,14 +65,46 @@ def qddays(trange=['2011-1-1', '2011-1-1']):
 def wp_index(trange=['2011-1-1', '2011-1-2']):
 	#
 	local_files = download.wp_index(trange)
+	i = 0
+	dtype = {
+				   'names':['hour', 'minute', 'wp_index', 'kak', 
+					  				'lrm', 'wmq', 'izn', 'fur', 'ebr',
+					  				'tdc', 'sjg', 'tuc', 'hon', 'cnb', 'n'], 
+					 'formats':['<i8', '<i8', '<f8', '<f8', '<f8', '<f8', 
+					            '<f8', '<f8', '<f8', '<f8', '<f8', '<f8', 
+											'<f8', '<f8', '<i8']
+					}
+  #
 	for lf in local_files:
-		with open(lf) as f:
-			d = f.read()
+		buff = np.genfromtxt(lf, dtype=dtype, skip_header=2, 
+												 missing_values='999.00', filling_values=np.nan, 
+												 unpack=True)
+		if i == 0 :
+			data = buff
+		else :
+			data = np.concatenate([data, buff])
+		i += 1
 
-	return 0
+	## convert to tplot variables
+  # time
+	t0 = time_double(trange[0])   
+	t0 = t0 - np.mod(t0, 86400)
+	t1 = time_double(trange[1]) 
+	t1 = t1 - np.mod(t1, 86400)
+	t  = np.arange(t0, t1, 1) 
+	t  = t[np.mod(t, 60) == 0]
+	# data
+	print(len(t))
+	print(len(data[2]))
+	store_data("Wp_index", data={'x':t, 'y':data[2]})
+	tplot("Wp_index")
+	
 
 
-a = qddays()
+	return 1
+
+
+a = wp_index()
 
 
 
