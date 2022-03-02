@@ -13,7 +13,7 @@ def read_dst(trange=['2011-1-1', '2011-1-2'],level="final"):
     local_files =load_wdc.dst(trange,level)
     i=0
     dtype = {'names':['dst','ar','mon','index1','day','RR','index','ver','ye','standard','data','ave'],
-             'formats':['<S3','<i2','<i2','<S1','<i2','<S2','<S1','<S1','<i2','<i4','24<i4','<i4']}
+             'formats':['<3U','<i8','<i8','<1U','<i8','2U','<1U','<1U','<i8','<i8','24<i8','<i8']}
     delimiter=[3,2,2,1,2,2,1,1,2,4]+24*[4]+[4]
     for lf in local_files:
         buff=np.genfromtxt(lf,dtype=dtype,delimiter=delimiter,missing_values=9999,filling_values=np.nan,unpack=True)
@@ -29,7 +29,7 @@ def read_dst(trange=['2011-1-1', '2011-1-2'],level="final"):
         #print(data)
         #for i in range(12):
         #data[i]=data[i]+buff[i]
-
+    #return data    
     # time
     t_1=str(data[8][0])+str(data[1][0])+"-"+str(data[2][0])+"-"+str(data[4][0])
     t_1=time_double(t_1)
@@ -44,11 +44,11 @@ def read_dst(trange=['2011-1-1', '2011-1-2'],level="final"):
     data_arr=data_arr.reshape(24*len(data[10]))
     start_time=int((t0-t_1)/3600)
     end_time=start_time+len(t)
-    if(data[7][0]==b'2'or data[7][0]==""):
+    if(data[7][0]==2 or data[7][0]==" "):
         name="dst"
-    elif(data[7][0]==b'1'):
+    elif(data[7][0]==1):
         name="pvdst"
-    elif(data[7][0]>b'2'):
+    elif(data[7][0]>2):
         name="moddst"
     else:
         name="dstRR"
@@ -60,15 +60,15 @@ def read_dst(trange=['2011-1-1', '2011-1-2'],level="final"):
         #print(lev_int)
         start_time=int((t0-t_1)/3600)+lev_int*12
         end_time=start_time+len(t)
-        if(data[7][lev_int-1]==b'2'or data[7][lev_int-1]==""):
+        if(data[7][lev_int-1]==2 or data[7][lev_int-1]==" "):
             name="dst"
-        elif(data[7][lev_int-1]==b'1'):
+        elif(data[7][lev_int-1]==1):
             name="pvdst"
-        elif(data[7][lev_int-1]>b'2'):
+        elif(data[7][lev_int-1]>2):
             name="moddst"
         else:
             name="dstRR"
         store_data(name, data={'x':t, 'y':data_arr[start_time:end_time]})
     #tplot("pvdst")
     tplot_names()
-    return 0
+  return 0
