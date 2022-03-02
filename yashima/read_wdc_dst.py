@@ -48,7 +48,7 @@ def read_dst(trange=['2011-1-1', '2011-1-2'],level="final"):
         name="dst"
     elif(data[7][0]==b'1'):
         name="pvdst"
-    elif(data[7][0]>2):
+    elif(data[7][0]>b'2'):
         name="moddst"
     else:
         name="dstRR"
