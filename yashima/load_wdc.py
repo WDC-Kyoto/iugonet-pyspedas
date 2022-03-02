@@ -68,7 +68,7 @@ def dst(trange,level):
                     out_files.append(file)
     out_files = sorted(out_files)
     return out_files
-def aym(trange,res='min'):
+def asy(trange,res='min'):
     #resにはminかhourしか入らないようにエラーメッセージ出したほうがいいかも（minデータしかない？？）
     #levelもつけておいて無視の方がエラー少なくなるかも,level=Falseを初期値で与える？
     """
