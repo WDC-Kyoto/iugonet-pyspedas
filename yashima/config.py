@@ -3,4 +3,4 @@ CONFIG={'local_data_dir_wdc':'iugonet/wdc_kyoto/geomag/','remote_data_dir_wdc':'
 
 
 if os.environ.get('SPEDAS_DATA_DIR') :
-    CONFIG['local_data_dir_wdc']=os.sep.join([os.environ['SPEDAS_DATA_DIR'],'iugonet/wdc_kyoto/geomag/'])
+    CONFIG['local_data_dir_wdc']=os.sep.join([os.environ['SPEDAS_DATA_DIR'],'iugonet','wdc_kyoto','geomag'])
