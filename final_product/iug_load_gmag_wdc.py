@@ -42,4 +42,7 @@ def iug_load_gmag_wdc_wp_index(trange=['2010-1-1', '2010-1-2']):
 #iug_load_gmag_wdc_qddays(trange=['2011-1-1', '2011-1-2'])
 
 #(5)
-iug_load_gmag_wdc_wp_index(trange=['2010-1-1', '2010-1-2'])
+#iug_load_gmag_wdc_wp_index(trange=['2010-1-1', '2010-1-2'])
+
+#(6)
+#iug_load_gmag_wdc(trange=['2011-1-1', '2011-1-2'],site="kak aaa",res="hour")
