@@ -100,3 +100,29 @@ iug_load_gmag_wdc_wp_index(trange=['2010-1-1', '2010-1-2'])
 18-Apr-22 15:31:23: Downloading https://www.isee.nagoya-u.ac.jp/~nose.masahito/s-cubed/data/201001/index_20100101.html to \iugonet\wdc\wp_index\2010\01\index_20100101.html
 18-Apr-22 15:31:23: Download complete: \iugonet\wdc\wp_index\2010\01\index_20100101.html
 0 : Wp_index
+
+(6)site
+trange,res有効
+siteに" "あけて各観測所コード
+tplot変数作成する
+実行コード
+iug_load_gmag_wdc(trange=['2011-1-1', '2011-1-2'],site="kak aaa",res="hour")
+実行結果
+18-Apr-22 16:16:18: File is current: \iugonet\wdc_kyoto\site\hour\kak\2011\kak1101
+0 : site_hour_kak_D
+1 : site_hour_kak_H
+2 : site_hour_kak_Z
+3 : site_hour_kak_F
+4 : site_hour_kak  data from:  site_hour_kak_H site_hour_kak_Z site_hour_kak_F
+18-Apr-22 16:16:18: Downloading http://wdc-data.iugonet.org/data/hour/aaa/2011/aaa1101 to \iugonet\wdc_kyoto\site\hour\aaa\2011\aaa1101
+18-Apr-22 16:16:18: Download complete: \iugonet\wdc_kyoto\site\hour\aaa\2011\aaa1101
+0 : site_hour_kak_D
+1 : site_hour_kak_H
+2 : site_hour_kak_Z
+3 : site_hour_kak_F
+4 : site_hour_kak  data from:  site_hour_kak_H site_hour_kak_Z site_hour_kak_F
+5 : site_hour_aaa_X
+6 : site_hour_aaa_Y
+7 : site_hour_aaa_Z
+8 : site_hour_aaa_F
+9 : site_hour_aaa  data from:  site_hour_aaa_Y site_hour_aaa_Z site_hour_aaa_F
