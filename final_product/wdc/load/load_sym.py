@@ -5,7 +5,7 @@ import numpy as np
 from pyspedas.utilities.time_double import time_double
 from pyspedas.utilities.time_string import time_string
 from pyspedas.utilities.dailynames  import dailynames
-from pytplot import store_data, options, del_data
+from pytplot import store_data, options, del_data,get_data
 from pytplot import tplot_names
 from .download.download_sym import download_sym
 
@@ -69,7 +69,10 @@ def load_sym(trange) :
     ## data
     store_data("SYM-H", data={'x':t, 'y':sym_h})
     store_data("SYM-D", data={'x':t, 'y':sym_d})
-    store_data("SYM", data=["SYM-D", "SYM-H"])
+    time1, data1 =get_data("SYM-H")
+    time2,data2=get_data("SYM-D")
+    data3=[e for e in zip(data1,data2)]
+    store_data("SYM", data={'x':time1, 'y':data3})
     options("SYM", "legend_names", ["SYM-D", "SYM-H"])
     options("SYM", "Color", ['black', 'red'])
     options("SYM", "ytitle", "SYM")
