@@ -4,7 +4,7 @@ import numpy as np
 from pyspedas.utilities.time_double import time_double
 from pyspedas.utilities.time_string import time_string
 from pyspedas.utilities.dailynames  import dailynames
-from pytplot import store_data, options, del_data
+from pytplot import store_data, options, del_data,get_data
 from pytplot import tplot_names
 
 from .download.download_sym import download_asy
@@ -66,7 +66,11 @@ def load_asy(trange) :
     ## data
     store_data("ASY-H", data={'x':t, 'y':asy_h})
     store_data("ASY-D", data={'x':t, 'y':asy_d})
-    store_data("ASY", data=["ASY-D", "ASY-H"])
+    #store_data("ASY", data=["ASY-D", "ASY-H"])
+    time1, data1 =get_data("ASY-H")
+    time2, data2 =get_data("ASY-D")
+    data3=[e for e in zip(data1,data2)]
+    store_data("ASY", data={'x':time1, 'y':data3})
     options("ASY", "legend_names", ["ASY-D", "ASY-H"])
     options("ASY", "Color", ['black', 'red'])
     options("ASY", "ytitle", "ASY")
