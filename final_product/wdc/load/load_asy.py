@@ -17,6 +17,9 @@ def load_asy(trange) :
 
     ### read data
     local_files = download_asy(trange)
+    if len(local_files)==0:
+            print("Can't Find file!")
+            return
     #
     names    = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8']
     names    = names + ['s' + str(i+1) for i in range(61)]
@@ -68,7 +71,7 @@ def load_asy(trange) :
     store_data("ASY-D", data={'x':t, 'y':asy_d})
     #store_data("ASY", data=["ASY-D", "ASY-H"])
     time1, data1 =get_data("ASY-H")
-    time2, data2 =get_data("ASY-D")
+    time2,data2=get_data("ASY-D")
     data3=[e for e in zip(data1,data2)]
     store_data("ASY", data={'x':time1, 'y':data3})
     options("ASY", "legend_names", ["ASY-D", "ASY-H"])

@@ -12,6 +12,9 @@ def load_dst(trange=['2011-1-1', '2011-1-2'],level="final"):
 
     """
     local_files =download_dst(trange,level)
+    if len(local_files)==0:
+            print("Can't Find file!")
+            return
     i=0
     dtype = {'names':['dst','ar','mon','index1','day','RR','index','ver','ye','standard','data','ave'],
              'formats':['<3U','<i8','<i8','<1U','<i8','2U','<1U','<1U','<i8','<i8','24<i8','<i8']}

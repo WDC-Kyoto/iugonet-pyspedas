@@ -17,6 +17,9 @@ def load_sym(trange) :
 
     ### read data
     local_files = download_sym(trange)
+    if len(local_files)==0:
+            print("Can't Find file!")
+            return
     #
     names    = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8']
     names    = names + ['s' + str(i+1) for i in range(61)]

@@ -2,7 +2,7 @@
 import numpy as np
 from pyspedas.utilities.time_double import time_double
 from pyspedas.utilities.time_string import time_string
-from pytplot import store_data,tplot_names
+from pytplot import store_data,tplot_names,get_data,options
 from pytplot import tplot
 import calendar
 from .download.download_site import download_site
@@ -140,6 +140,7 @@ def load_site_hour(trange=['2011-1-1', '2011-1-2'],site='kak'):
             #print(data_arr)
             name.append("site_"+res+'_'+site2[ss]+"_D")
             store_data(name[-1], data={'x':t, 'y':data_arr[start_time:end_time]})
+            options(name[-1], "ysubtitle", "(degree)")
         if(data[3].count("H")>1):
             cf=np.array(H_data)
             data_arr=cf.reshape(24*len(cf))
@@ -152,6 +153,7 @@ def load_site_hour(trange=['2011-1-1', '2011-1-2'],site='kak'):
             #print(data_arr)
             name.append("site_"+res+'_'+site2[ss]+"_I")
             store_data(name[-1], data={'x':t, 'y':data_arr[start_time:end_time]})
+            options(name[-1], "ysubtitle", "(degree)")
         if(data[3].count("X")>1):
             cf=np.array(X_data)
             data_arr=cf.reshape(24*len(cf))
@@ -177,7 +179,18 @@ def load_site_hour(trange=['2011-1-1', '2011-1-2'],site='kak'):
             name.append("site_"+res+'_'+site2[ss]+"_F")
             store_data(name[-1], data={'x':t, 'y':data_arr[start_time:end_time]})
 
-
-        store_data("site_"+res+'_'+site2[ss], data=name)
-
+        #tplot_names()
+        #store_data("site_"+res+'_'+site2[ss], data=["site_hour_kak_D","site_hour_kak_H"])
+        data1=[]
+        for na in name:
+            data1.append([])
+            data1[-1].extend(get_data(na)[1])
+        print(len(data1))
+        data2=[e for e in zip (*data1)]
+        store_data("site_"+res+'_'+site2[ss], data={'x':t, 'y':data2})
+        options("site_"+res+'_'+site2[ss], "legend_names", name)
+        #options("site_"+res+'_'+site2[ss], "Color", ['black', 'red'])
+        options("site_"+res+'_'+site2[ss], "ytitle", "site_"+res+'_'+site2[ss])
+        options("site_"+res+'_'+site2[ss], "ysubtitle", "(nT)")
+        
     tplot_names()
