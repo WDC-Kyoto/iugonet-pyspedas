@@ -1,6 +1,6 @@
 from wdc import site as st
 
-def iug_load_gmag_wdc(trange=['2011-1-1', '2011-1-2'],level="final",site="dst kak ae asy",res="hour"):
+def iug_load_gmag_wdc(trange=['2011-1-1', '2011-1-2'],level="final",site="dst kak ae asy sym",res="hour"):
     site2=site.split(" ")
     if ("dst" in site2):
         from wdc import dst
@@ -20,11 +20,29 @@ def iug_load_gmag_wdc(trange=['2011-1-1', '2011-1-2'],level="final",site="dst ka
     return 0
 
 def iug_load_gmag_wdc_qddays(trange=['2011-1-1', '2011-1-2']):
-    from wdc import gddays
-    gddays.qddays(trange=trange)
-    return 0
+    from wdc import qddays
+    result=qddays.qddays(trange=trange)
+    return result
 
 def iug_load_gmag_wdc_wp_index(trange=['2010-1-1', '2010-1-2']):
     from wdc import wp_index
     wp_index.wp_index(trange=trange)
     return 0
+
+#(1)
+#iug_load_gmag_wdc(trange=['2011-1-1', '2011-1-2'],level="provisional",site="ae",res="hour")
+
+#(2)
+#iug_load_gmag_wdc(trange=['2011-1-1', '2011-1-2'],level="all",site="dst")
+
+#(3)
+#iug_load_gmag_wdc(trange=['2011-1-1', '2011-1-2'],site="asy")
+
+#(4)
+#iug_load_gmag_wdc_qddays(trange=['2011-1-1', '2011-1-2'])
+
+#(5)
+#iug_load_gmag_wdc_wp_index(trange=['2010-1-1', '2010-1-2'])
+
+#(6)
+#iug_load_gmag_wdc(trange=['2011-1-1', '2011-1-2'],site="kak aaa",res="hour")

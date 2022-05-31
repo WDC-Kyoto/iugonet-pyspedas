@@ -13,6 +13,9 @@ CONFIG={'local_data_dir_dst':'',
        'remote_data_dir_ae':'http://wdc-data.iugonet.org/data/'}
 
 root_dir=''
+if os.environ.get('HOME') :
+    root_dir = os.environ.get('HOME')
+
 if os.environ.get('SPEDAS_DATA_DIR') :
     root_dir = os.environ.get('SPEDAS_DATA_DIR')
 

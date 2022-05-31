@@ -14,6 +14,9 @@ from .download.download_wp_index import download_wp_index
 def load_wp_index(trange=['2011-1-1', '2011-1-2 00:00:01']):
     #
     local_files =download_wp_index(trange)
+    if len(local_files)==0:
+            print("Can't Find file!")
+            return
     i = 0
     dtype = { 
               'names':['hour', 'minute', 'wp_index', 'kak', 'lrm', 'wmq', 'izn', 

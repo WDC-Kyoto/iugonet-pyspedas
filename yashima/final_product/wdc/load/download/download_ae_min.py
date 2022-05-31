@@ -19,7 +19,7 @@ def download_ae_min(trange, level='provisional') :
 
 
     ### provisional
-    if level == 'provisional' :
+    elif level == 'provisional' :
 
         directory = CONFIG['remote_data_dir_ae'] + 'min/index/'
 
@@ -36,14 +36,14 @@ def download_ae_min(trange, level='provisional') :
         for (rf, yr) in zip(remote_file, year) :
             if int(yr) < 1996 :
                 subdir = rf[-6] + '.' + rf[-5]  # ae -> a.e
-                remote_file[i] = rf.replace('index/', 'index/'+ subdir + '/') 
+                remote_file[i] = rf.replace('index/', 'index/'+ subdir + '/')
             if int(yr) >= 1996 :
                 remote_file[i] = rf.replace('index/', 'index/pvae/')
             i += 1
 
 
         ## download
-        local_path = [ os.sep.join( [CONFIG['local_data_dir_ae'], 'min', yr] ) 
+        local_path = [ os.sep.join( [CONFIG['local_data_dir_ae'], 'min', yr] )
                        for yr in year ]
         local_files = []
         for (lp, rf) in zip(local_path, remote_file) :
@@ -54,15 +54,13 @@ def download_ae_min(trange, level='provisional') :
 
 
     ### final
-    if level == 'final' :
+    elif level == 'final' :
         local_files= []
-        pass
+
+    else:
+        print("Could you check the level ? Level must be chosen from  ['provisional','real_time', 'final'] ")
+        local_files= []
 
 
     #print(local_files)
     return local_files
-
-
-
-
-

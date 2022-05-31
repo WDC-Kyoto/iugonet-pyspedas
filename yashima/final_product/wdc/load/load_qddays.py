@@ -7,6 +7,9 @@ from .download.download_qddays import download_qddays
 def load_qddays(trange=['2010-1-1', '2010-1-2']):
     #
     local_files = download_qddays(trange)
+    if len(local_files)==0:
+            print("Can't Find file!")
+            return
     #
     yr   = []
     mon  = []
