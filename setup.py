@@ -6,12 +6,12 @@ with open("README.md", "r") as fh:
 setuptools.setup(
     name="sample_command",
     version="0.1.0",
-    author="cm-hirano-shigetoshi",
-    author_email="hirano.shigetoshi@classmethod.jp",
+    author="WDC, Kyoto",
+    author_email="koike@kugi.kyoto-u.ac.jp",
     description="You can receive the message 'Hello!!!'",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/cm-hirano-shigetoshi/python_sample_command",
+    url="https://github.com/WDC-Kyoto/iugonet-pyspedas/tree/pip-test",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
