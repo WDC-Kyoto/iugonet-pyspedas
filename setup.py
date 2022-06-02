@@ -4,14 +4,14 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="sample_command",
+    name="iugonet_wdc",
     version="0.1.0",
     author="WDC, Kyoto",
     author_email="koike@kugi.kyoto-u.ac.jp",
     description="You can receive the message 'Hello!!!'",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/WDC-Kyoto/iugonet-pyspedas/tree/pip-test",
+    url="https://github.com/WDC-Kyoto/iugonet-pyspedas",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
