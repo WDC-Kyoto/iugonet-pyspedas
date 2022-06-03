@@ -8,7 +8,7 @@ setuptools.setup(
     version="0.1.0",
     author="WDC, Kyoto",
     author_email="koike@kugi.kyoto-u.ac.jp",
-    description="You can receive the message 'Hello!!!'",
+    description="This is a pySPEDAS package for loading geomagnetic data from World Data Center for Geomagnetism, Kyoto.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/WDC-Kyoto/iugonet-pyspedas",
