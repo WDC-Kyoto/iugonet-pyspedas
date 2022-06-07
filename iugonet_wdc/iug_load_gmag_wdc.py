@@ -1,4 +1,4 @@
-from wdc import site as st
+from wdc.site import site as st
 
 def iug_load_gmag_wdc(trange=['2011-1-1', '2011-1-2'],level="final",site="dst kak ae asy sym",res="hour"):
     site2=site.split(" ")
