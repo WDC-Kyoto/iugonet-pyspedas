@@ -21,5 +21,8 @@ setuptools.setup(
     entry_points = {
         'console_scripts': ['']
     },
+    install_requires = [
+        'pyspedas'
+    ],
     python_requires='>=3.7',
 )
