@@ -23,3 +23,5 @@ iug_load_gmag_wdc.iug_load_gmag_wdc(trange=['2011-1-1', '2011-2-1'],level="final
 
 #tplot変数を描画 
 tplot("*")
+
+#if you wanted to know more,please check ./iugonet-wdc/sample_program.txt
