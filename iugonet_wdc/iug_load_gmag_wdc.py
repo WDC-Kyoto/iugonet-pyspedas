@@ -19,19 +19,11 @@ def iug_load_gmag_wdc(trange=['2011-1-1', '2011-1-2'],level="final",site="dst ka
         from .wdc.sym import sym
         sym(trange=trange)
         ack("sym")
-    if("ae" in site2):
-        from .wdc.ae import ae
-        ae(trange=trange,level=level,res=res)
-    if("asy" in site2):
-        from .wdc.asy import asy
-        asy(trange=trange)
-    if("sym" in site2):
-        from .wdc.sym import sym
-        sym(trange=trange)
 
     site2=[s for s in site2 if not((s=="dst")or(s=="ae")or(s=="sym")or(s=="asy"))]
     for ss in site2:
         st(trange=trange,res=res,site=ss)
+    ack("site")
     return 0
 
 def iug_load_gmag_wdc_qddays(trange=['2011-1-1', '2011-1-2']):
