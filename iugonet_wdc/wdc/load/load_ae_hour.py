@@ -10,8 +10,6 @@ from pytplot import tplot_names
 from .download.download_ae_min import download_ae_min
 
 
-
-
 def load_hour(local_file):
 
 
@@ -64,7 +62,7 @@ def load_ae_hour(trange, level='provisional') :
     """
 
     ### download
-    local_file    = download_ae_min(trange=trange, level=level)
+    local_file = download_ae_min(trange=trange, level=level)
 
     if len(local_file)==0:
         print("We could not download the data Please check your command")
@@ -72,30 +70,50 @@ def load_ae_hour(trange, level='provisional') :
     ### AE
     local_file_ae = [ lf for lf in local_file if lf[-6:-4] == 'ae' ]   # aeYYMM
     t, data       = load_hour(local_file_ae)
-    store_data("AE_min", data={'x':t, 'y':data})
-
-    for i in range(24) :
-        print( time_string(t[i]), data[i] )
+    #
+    tname = "wdc_mag_ae_1hr" + level
+    store_data(tname, data={'x':t, 'y':data})
+    # options
+    pytplot.options(tname, 'name', 'AE')
+    pytplot.options(tname, 'ytitle', 'AE(hourly)')
+    pytplot.options(tname, 'ysubtitle', '[nT]')
 
 
     ### AL
     local_file_al = [ lf for lf in local_file if lf[-6:-4] == 'al' ]   # alYYMM
     t, data       = load_hour(local_file_al)
-    store_data("AL_min", data={'x':t, 'y':data})
+    #
+    tname = "wdc_mag_al_1hr" + level
+    store_data(tname, data={'x':t, 'y':data})
+    # options
+    pytplot.options(tname, 'name', 'AL')
+    pytplot.options(tname, 'ytitle', 'AL(hourly)')
+    pytplot.options(tname, 'ysubtitle', '[nT]')
 
 
 
     ### AO
     local_file_ao = [ lf for lf in local_file if lf[-6:-4] == 'ao' ]   # aoYYMM
     t, data       = load_hour(local_file_ao)
-    store_data("AO_min", data={'x':t, 'y':data})
+    #
+    tname = "wdc_mag_ao_1hr" + level
+    store_data(tname, data={'x':t, 'y':data})
+    # options
+    pytplot.options(tname, 'name', 'AO')
+    pytplot.options(tname, 'ytitle', 'AO(hourly)')
+    pytplot.options(tname, 'ysubtitle', '[nT]')
 
 
 
     ### AU
     local_file_au = [ lf for lf in local_file if lf[-6:-4] == 'au' ]   # auYYMM
     t, data       = load_hour(local_file_au)
-    store_data("AU_min", data={'x':t, 'y':data})
+    #
+    tname = "wdc_mag_au_1hr" + level
+    store_data(tname, data={'x':t, 'y':data})
+    # options
+    pytplot.options(tname, 'name', 'AU')
+    pytplot.options(tname, 'ytitle', 'AU(hourly)')
+    pytplot.options(tname, 'ysubtitle', '[nT]')
 
-    tplot_names()
     return True

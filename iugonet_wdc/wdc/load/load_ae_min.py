@@ -1,5 +1,3 @@
-
-
 import numpy as np
 from pyspedas.utilities.time_double import time_double
 from pyspedas.utilities.time_string import time_string
@@ -9,8 +7,6 @@ from pytplot import tplot
 from pytplot import tplot_names
 
 from .download.download_ae_min import download_ae_min
-
-
 
 
 
@@ -59,6 +55,10 @@ def load_min(local_file):
 
 
 
+
+
+
+
 def load_ae_min(trange, level='provisional') :
 
     """
@@ -70,42 +70,49 @@ def load_ae_min(trange, level='provisional') :
     local_file    = download_ae_min(trange=trange, level=level)
     if len(local_file)==0:
         print("We could not download the data please check your command")
-        return 0
+        return False
 
 
     ### AE
     local_file_ae = [ lf for lf in local_file if lf[-6:-4] == 'ae' ]   # aeYYMM
     t, data       = load_min(local_file_ae)
-    store_data("AE_min", data={'x':t, 'y':data})
-    options("AE_min", "ytitle", "AE(min)")
-    options("AE_min", "ysubtitle", "(nT)")
+    #
+    tname = "wdc_mag_ae_1min" + level
+    store_data(tname, data={'x':t, 'y':data})
+    options(tname, "ytitle", "AE(1-min)")
+    options(tname, "ysubtitle", "[nT]")
 
 
 
     ### AL
     local_file_al = [ lf for lf in local_file if lf[-6:-4] == 'al' ]   # alYYMM
     t, data       = load_min(local_file_al)
-    store_data("AL_min", data={'x':t, 'y':data})
-    options("AL_min", "ytitle", "AL(min)")
-    options("AL_min", "ysubtitle", "(nT)")
+    #
+    tname = "wdc_mag_al_1min" + level
+    store_data(tname, data={'x':t, 'y':data})
+    options(tname, "ytitle", "AL(1-min)")
+    options(tname, "ysubtitle", "[nT]")
 
 
 
     ### AO
     local_file_ao = [ lf for lf in local_file if lf[-6:-4] == 'ao' ]   # aoYYMM
     t, data       = load_min(local_file_ao)
-    store_data("AO_min", data={'x':t, 'y':data})
-    options("AO_min", "ytitle", "AO(min)")
-    options("AO_min", "ysubtitle", "(nT)")
+    #
+    tname = "wdc_mag_ao_1min" + level
+    store_data(tname, data={'x':t, 'y':data})
+    options(tname, "ytitle", "AO(1-min)")
+    options(tname, "ysubtitle", "[nT]")
 
 
 
     ### AU
     local_file_au = [ lf for lf in local_file if lf[-6:-4] == 'au' ]   # auYYMM
     t, data       = load_min(local_file_au)
-    store_data("AU_min", data={'x':t, 'y':data})
-    options("AU_min", "ytitle", "AU(min)")
-    options("AU_min", "ysubtitle", "(nT)")
+    #
+    tname = "wdc_mag_au_1min" + level
+    store_data(tname, data={'x':t, 'y':data})
+    options(tname, "ytitle", "AU(1-min)")
+    options(tname, "ysubtitle", "[nT]")
 
-    tplot_names()
     return True
