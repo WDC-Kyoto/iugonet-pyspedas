@@ -1,11 +1,9 @@
+import os
 import numpy as np
 from pyspedas.utilities.time_double import time_double
 from pyspedas.utilities.time_string import time_string
 from pyspedas.utilities.dailynames  import dailynames
 from pytplot import store_data, options
-from pytplot import tplot
-from pytplot import tplot_names
-
 from .download.download_ae_min import download_ae_min
 
 
@@ -77,9 +75,9 @@ def load_ae_min(trange, level='provisional') :
     local_file_ae = [ lf for lf in local_file if lf[-6:-4] == 'ae' ]   # aeYYMM
     t, data       = load_min(local_file_ae)
     #
-    tname = "wdc_mag_ae_1min" + level
+    tname = "wdc_mag_ae_1min" + '_' + level
     store_data(tname, data={'x':t, 'y':data})
-    options(tname, "ytitle", "AE(1-min)")
+    options(tname, "ytitle", "AE(1-min)" + os.linesep + level)
     options(tname, "ysubtitle", "[nT]")
 
 
@@ -88,9 +86,9 @@ def load_ae_min(trange, level='provisional') :
     local_file_al = [ lf for lf in local_file if lf[-6:-4] == 'al' ]   # alYYMM
     t, data       = load_min(local_file_al)
     #
-    tname = "wdc_mag_al_1min" + level
+    tname = "wdc_mag_al_1min" + '_' + level
     store_data(tname, data={'x':t, 'y':data})
-    options(tname, "ytitle", "AL(1-min)")
+    options(tname, "ytitle", "AL(1-min)" + os.linesep + level)
     options(tname, "ysubtitle", "[nT]")
 
 
@@ -99,9 +97,9 @@ def load_ae_min(trange, level='provisional') :
     local_file_ao = [ lf for lf in local_file if lf[-6:-4] == 'ao' ]   # aoYYMM
     t, data       = load_min(local_file_ao)
     #
-    tname = "wdc_mag_ao_1min" + level
+    tname = "wdc_mag_ao_1min" + '_' + level
     store_data(tname, data={'x':t, 'y':data})
-    options(tname, "ytitle", "AO(1-min)")
+    options(tname, "ytitle", "AO(1-min)" + os.linesep + level)
     options(tname, "ysubtitle", "[nT]")
 
 
@@ -110,9 +108,9 @@ def load_ae_min(trange, level='provisional') :
     local_file_au = [ lf for lf in local_file if lf[-6:-4] == 'au' ]   # auYYMM
     t, data       = load_min(local_file_au)
     #
-    tname = "wdc_mag_au_1min" + level
+    tname = "wdc_mag_au_1min" + '_' + level
     store_data(tname, data={'x':t, 'y':data})
-    options(tname, "ytitle", "AU(1-min)")
+    options(tname, "ytitle", "AU(1-min)" + os.linesep + level)
     options(tname, "ysubtitle", "[nT]")
 
     return True
