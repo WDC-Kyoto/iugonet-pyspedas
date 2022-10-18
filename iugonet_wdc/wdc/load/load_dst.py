@@ -3,7 +3,6 @@ import numpy as np
 from pyspedas.utilities.time_double import time_double
 from pyspedas.utilities.time_string import time_string
 from pytplot import store_data,tplot_names, options
-from pytplot import tplot, tplot_names
 from .download.download_dst import download_dst
 
 def load_dst(trange=['2011-1-1', '2011-1-2'],level="final"):
@@ -81,7 +80,3 @@ def load_dst(trange=['2011-1-1', '2011-1-2'],level="final"):
         #
         options(name, "ytitle", 'Dst' + os.linesep + level)
         options(name, "ysubtitle", '[nT]')
-
-load_dst()
-tplot_names()
-tplot([0])

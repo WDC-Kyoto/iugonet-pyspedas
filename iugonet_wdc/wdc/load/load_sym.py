@@ -89,7 +89,3 @@ def load_sym(trange) :
     del_data(name_sym_d)
 
     return True
-
-load_sym(['2011-01-01', '2011-01-02'])
-tplot_names()
-tplot([0])

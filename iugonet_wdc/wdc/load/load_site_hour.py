@@ -3,7 +3,6 @@ import numpy as np
 from pyspedas.utilities.time_double import time_double
 from pyspedas.utilities.time_string import time_string
 from pytplot import store_data,tplot_names,get_data,options
-from pytplot import tplot
 import calendar
 from .download.download_site import download_site
 
@@ -179,7 +178,6 @@ def load_site_hour(trange=['2011-1-1', '2011-1-2'],site='kak'):
             name.append("site_"+res+'_'+site2[ss]+"_F")
             store_data(name[-1], data={'x':t, 'y':data_arr[start_time:end_time]})
 
-        #tplot_names()
         #store_data("site_"+res+'_'+site2[ss], data=["site_hour_kak_D","site_hour_kak_H"])
         data1=[]
         for na in name:
@@ -193,4 +191,3 @@ def load_site_hour(trange=['2011-1-1', '2011-1-2'],site='kak'):
         options("site_"+res+'_'+site2[ss], "ytitle", "site_"+res+'_'+site2[ss])
         options("site_"+res+'_'+site2[ss], "ysubtitle", "(nT)")
         
-    tplot_names()
