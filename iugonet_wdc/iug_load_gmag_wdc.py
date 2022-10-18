@@ -9,7 +9,7 @@ def iug_load_gmag_wdc(trange=['2011-1-1', '2011-1-2'],level="final",site="dst ka
         ack("dst")
     if("ae" in site2):
         from .wdc.ae import ae
-        ae(trange=trange,level=level,res=res)
+        ae(trange=trange,level='provisional',res=res)
         ack("ae")
     if("asy" in site2):
         from .wdc.asy import asy
