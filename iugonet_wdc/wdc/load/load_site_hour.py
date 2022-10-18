@@ -185,7 +185,7 @@ def load_site_hour(trange=['2011-1-1', '2011-1-2'],site='kak'):
         for na in name:
             data1.append([])
             data1[-1].extend(get_data(na)[1])
-        print(len(data1))
+
         data2=[e for e in zip (*data1)]
         store_data("site_"+res+'_'+site2[ss], data={'x':t, 'y':data2})
         options("site_"+res+'_'+site2[ss], "legend_names", name)
