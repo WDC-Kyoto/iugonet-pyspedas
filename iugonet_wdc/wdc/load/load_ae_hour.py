@@ -8,7 +8,7 @@ from pytplot import tplot
 from pytplot import tplot_names
 
 from .download.download_ae_min import download_ae_min
-
+from .iug_load_gmag_wdc_acknowledgement import iug_wdc_ack as ack
 
 
 
@@ -72,7 +72,7 @@ def load_ae_hour(trange, level='provisional') :
     ### AE
     local_file_ae = [ lf for lf in local_file if lf[-6:-4] == 'ae' ]   # aeYYMM
     t, data       = load_hour(local_file_ae)
-    store_data("AE_min", data={'x':t, 'y':data})
+    store_data("AE_min", data={'x':t, 'y':data},attr_dict={'acknowledgement':ack("ae")})
 
     for i in range(24) :
         print( time_string(t[i]), data[i] )
