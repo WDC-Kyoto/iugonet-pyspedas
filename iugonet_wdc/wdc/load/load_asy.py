@@ -7,7 +7,7 @@ from pytplot import store_data, options, del_data, get_data
 
 from .download.download_sym import download_asy
 
-
+from .iug_load_gmag_wdc_acknowledgement import iug_wdc_ack as ack
 
 def load_asy(trange) :
 
@@ -68,8 +68,8 @@ def load_asy(trange) :
     ## store ASY-H and ASY-D
     name_asy_h = "wdc_mag_asy_h"
     name_asy_d = "wdc_mag_asy_d"
-    store_data(name_asy_h, data={'x':t, 'y':asy_h})
-    store_data(name_asy_d, data={'x':t, 'y':asy_d})
+    store_data(name_asy_h, data={'x':t, 'y':asy_h},attr_dict={'acknowledgement':ack("asy")})
+    store_data(name_asy_d, data={'x':t, 'y':asy_d},attr_dict={'acknowledgement':ack("asy")})
     ##
     time1, data1 = get_data(name_asy_h)
     time2, data2 = get_data(name_asy_d)
@@ -77,7 +77,7 @@ def load_asy(trange) :
     #
     # store ASY
     name_asy = "wdc_mag_asy"
-    store_data(name_asy, data={'x':time1, 'y':data3})
+    store_data(name_asy, data={'x':time1, 'y':data3},attr_dict={'acknowledgement':ack("asy")})
     #
     options(name_asy, "legend_names", ["ASY-H", "ASY-D"])
     options(name_asy, "Color", ['black', 'red'])
