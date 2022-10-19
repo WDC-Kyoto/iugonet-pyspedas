@@ -22,7 +22,12 @@ iug_load_gmag_wdc.iug_load_gmag_wdc(trange=['2011-1-1', '2011-2-1'],level="final
 
 
 #tplot変数を描画 
-pytplot.tplot_names()
-tplot("*")
+#pytplot.tplot_names()
+#tplot("*")
+
+#acknowlegement
+name1="wdc_mag_dst_final"
+name2=pytplot.tplot_names(1)[0]
+print(pytplot.data_quants[name2].attrs["acknowledgement"])
 
 #if you wanted to know more,please check ./iugonet-wdc/sample_program.txt
