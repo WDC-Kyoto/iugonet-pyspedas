@@ -6,6 +6,7 @@ from pyspedas.utilities.time_double import time_double
 from pyspedas.utilities.time_string import time_string  
 from pyspedas.utilities.dailynames  import dailynames  
 from pytplot import store_data, options
+from .iug_load_gmag_wdc_acknowledgement import iug_wdc_ack as ack
 from .download.download_wp_index import download_wp_index
  
 
@@ -48,13 +49,13 @@ def load_wp_index(trange):
 
     # data
     tname = "wdc_mag_Wp_index"
-    store_data(tname, data={'x':t, 'y':data[2]})
+    store_data(tname, data={'x':t, 'y':data[2]},attr_dict={'acknowledgement':ack("wp")})
     options(tname, 'ytitle', 'WDC_Wp')
     options(tname, 'ysubtitle', '[nT]')
     #
     # station
     tname = "wdc_mag_Wp_nstn"
-    store_data(tname, data={'x':t, 'y':data[-1]})
+    store_data(tname, data={'x':t, 'y':data[-1]},attr_dict={'acknowledgement':ack("wp")})
     options(tname, 'ytitle', 'WDC_Wp_nstn')
     options(tname, 'ysubtitle', '')
 
