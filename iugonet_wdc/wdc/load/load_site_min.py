@@ -4,6 +4,7 @@ from pyspedas.utilities.time_string import time_string
 from pytplot import store_data,tplot_names,options,get_data
 import calendar
 from .download.download_site import download_site
+from .iug_load_gmag_wdc_acknowledgement import iug_wdc_ack as ack
 
 def load_site_min(trange=['2011-1-1', '2011-1-2'],site='kak'):
     local_files =download_site(site=site,trange=trange,res="min")
@@ -159,39 +160,39 @@ def load_site_min(trange=['2011-1-1', '2011-1-2'],site='kak'):
             data_arr=cf.reshape(60*24*len(cf))
             #print(data_arr)
             name.append("site_"+res+'_'+site2[ss]+"_D")
-            store_data(name[-1], data={'x':t, 'y':data_arr[start_time:end_time]})
+            store_data(name[-1], data={'x':t, 'y':data_arr[start_time:end_time]},attr_dict={'acknowledgement':ack("site")})
             options(name[-1], "ysubtitle", "[degree]")
         if(data[5].count("H")>1):
             cf=np.array(H_data)
             data_arr=cf.reshape(60*24*len(cf))
             #print(data_arr)
             name.append("site_"+res+'_'+site2[ss]+"_H")
-            store_data(name[-1], data={'x':t, 'y':data_arr[start_time:end_time]})
+            store_data(name[-1], data={'x':t, 'y':data_arr[start_time:end_time]},attr_dict={'acknowledgement':ack("site")})
         if(data[5].count("I")>1):
             cf=np.array(I_data)
             data_arr=cf.reshape(60*24*len(cf))
             #print(data_arr)
             name.append("site_"+res+'_'+site2[ss]+"_I")
-            store_data(name[-1], data={'x':t, 'y':data_arr[start_time:end_time]})
+            store_data(name[-1], data={'x':t, 'y':data_arr[start_time:end_time]},attr_dict={'acknowledgement':ack("site")})
             options(name[-1], "ysubtitle", "[degree]")
         if(data[5].count("X")>1):
             cf=np.array(X_data)
             data_arr=cf.reshape(60*24*len(cf))
             #print(data_arr)
             name.append("site_"+res+'_'+site2[ss]+"_X")
-            store_data(name[-1], data={'x':t, 'y':data_arr[start_time:end_time]})
+            store_data(name[-1], data={'x':t, 'y':data_arr[start_time:end_time]},attr_dict={'acknowledgement':ack("site")})
         if(data[5].count("Y")>1):
             cf=np.array(Y_data)
             data_arr=cf.reshape(60*24*len(cf))
             #print(data_arr)
             name.append("site_"+res+'_'+site2[ss]+"_Y")
-            store_data(name[-1], data={'x':t, 'y':data_arr[start_time:end_time]})
+            store_data(name[-1], data={'x':t, 'y':data_arr[start_time:end_time]},attr_dict={'acknowledgement':ack("site")})
         if(data[5].count("Z")>1):
             cf=np.array(Z_data)
             data_arr=cf.reshape(60*24*len(cf))
             #print(data_arr)
             name.append("site_"+res+'_'+site2[ss]+"_Z")
-            store_data(name[-1], data={'x':t, 'y':data_arr[start_time:end_time]})
+            store_data(name[-1], data={'x':t, 'y':data_arr[start_time:end_time]},attr_dict={'acknowledgement':ack("site")})
         if(data[5].count("F")>1):
             cf=np.array(F_data)
             #return cf
@@ -199,7 +200,7 @@ def load_site_min(trange=['2011-1-1', '2011-1-2'],site='kak'):
             #print(data_arr)
             name.append("site_"+res+'_'+site2[ss]+"_F")
             #print(len(t))
-            store_data(name[-1], data={'x':t, 'y':data_arr[start_time:end_time]})
+            store_data(name[-1], data={'x':t, 'y':data_arr[start_time:end_time]},attr_dict={'acknowledgement':ack("site")})
 
         #store_data("site_"+res+'_'+site2[ss], data=name)
         data1=[]
@@ -207,7 +208,7 @@ def load_site_min(trange=['2011-1-1', '2011-1-2'],site='kak'):
             data1.append([])
             data1[-1].extend(get_data(na)[1])
         data2=[e for e in zip (*data1)]
-        store_data("site_"+res+'_'+site2[ss], data={'x':t, 'y':data2})
+        store_data("site_"+res+'_'+site2[ss], data={'x':t, 'y':data2},attr_dict={'acknowledgement':ack("site")})
         options("site_"+res+'_'+site2[ss], "legend_names", name)
         #options("site_"+res+'_'+site2[ss], "Color", ['black', 'red'])
         options("site_"+res+'_'+site2[ss], "ytitle", "site_"+res+'_'+site2[ss])
