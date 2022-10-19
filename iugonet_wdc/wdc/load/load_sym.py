@@ -6,7 +6,7 @@ from pyspedas.utilities.dailynames  import dailynames
 from pytplot import store_data, options, del_data,get_data
 from pytplot import tplot, tplot_names
 from .download.download_sym import download_sym
-
+from .iug_load_gmag_wdc_acknowledgement import iug_wdc_ack as ack
 
 def load_sym(trange) :
 
@@ -68,8 +68,8 @@ def load_sym(trange) :
     ## store SYM-H and SYM-D
     name_sym_h = "wdc_mag_sym_h" 
     name_sym_d = "wdc_mag_sym_d" 
-    store_data(name_sym_h, data={'x':t, 'y':sym_h})
-    store_data(name_sym_d, data={'x':t, 'y':sym_d})
+    store_data(name_sym_h, data={'x':t, 'y':sym_h},attr_dict={'acknowledgement':ack("sym")})
+    store_data(name_sym_d, data={'x':t, 'y':sym_d},attr_dict={'acknowledgement':ack("sym")})
     #
     time1, data1 = get_data(name_sym_h)
     time2, data2 = get_data(name_sym_d)
@@ -78,7 +78,7 @@ def load_sym(trange) :
     ## store SYM
     name_sym = "wdc_mag_sym"
     data3=[e for e in zip(data1,data2)]
-    store_data(name_sym, data={'x':time1, 'y':data3})
+    store_data(name_sym, data={'x':time1, 'y':data3},attr_dict={'acknowledgement':ack("sym")})
     #
     options(name_sym, "legend_names", ["SYM-H", "SYM-D"])
     options(name_sym, "Color", ['black', 'red'])
