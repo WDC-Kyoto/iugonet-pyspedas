@@ -144,7 +144,7 @@ def load_site_hour(trange=['2011-1-1', '2011-1-2'],site='kak'):
             options(name[-1], "legend_names","D[degree]")
             options(name[-1], "ytitle", site2[ss] + os.linesep +"(hourly)")
             options(name[-1], "Color", ['green'])
-            if(data[3].count("H")>1):
+        if(data[3].count("H")>1):
             cf=np.array(H_data)
             data_arr=cf.reshape(24*len(cf))
             name.append("wdc_mag_"+site2[ss]+"_1hr_H")
