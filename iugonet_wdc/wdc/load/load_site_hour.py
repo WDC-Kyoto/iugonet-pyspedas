@@ -1,4 +1,4 @@
-
+import os
 import numpy as np
 from pyspedas.utilities.time_double import time_double
 from pyspedas.utilities.time_string import time_string
@@ -205,5 +205,5 @@ def load_site_hour(trange=['2011-1-1', '2011-1-2'],site='kak'):
         store_data(name_site,data={'x':t, 'y':data2},attr_dict={'acknowledgement':ack("site")})
         options(name_site, "legend_names", name)
         options(name_site, "ytitle", site2[ss]+os.linesep+"(hourly)")
-#        options(name_site, "ysubtitle", "(nT)")
+        #options(name_site, "ysubtitle", "(nT)")
         
