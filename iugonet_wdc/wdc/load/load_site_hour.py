@@ -134,6 +134,7 @@ def load_site_hour(trange=['2011-1-1', '2011-1-2'],site='kak'):
 
         #store data
         name=[]
+        clist=[]
         if(data[3].count("D")>1):
             cf=np.array(D_data)
             data_arr=cf.reshape(24*len(cf))
@@ -143,6 +144,7 @@ def load_site_hour(trange=['2011-1-1', '2011-1-2'],site='kak'):
             #options(name[-1], "ysubtitle", "(degree)")
             options(name[-1], "legend_names","D[degree]")
             options(name[-1], "ytitle", site2[ss] + os.linesep +"(hourly)")
+            clist.append('green')
             options(name[-1], "Color", ['green'])
         if(data[3].count("H")>1):
             cf=np.array(H_data)
@@ -152,6 +154,7 @@ def load_site_hour(trange=['2011-1-1', '2011-1-2'],site='kak'):
             options(name[-1], "legend_names","H[nT]")
             options(name[-1], "ytitle", site2[ss] + os.linesep +"(hourly)")
             options(name[-1], "Color", ['blue'])
+            clist.append('blue')
         if(data[3].count("I")>1):
             cf=np.array(I_data)
             data_arr=cf.reshape(24*len(cf))
@@ -162,6 +165,7 @@ def load_site_hour(trange=['2011-1-1', '2011-1-2'],site='kak'):
             options(name[-1], "ytitle", site2[ss] + os.linesep +"(hourly)")
             options(name[-1], "legend_names", "I[degree]")
             options(name[-1], "Color", ['magenta'])
+            clist.append('magenta')
         if(data[3].count("X")>1):
             cf=np.array(X_data)
             data_arr=cf.reshape(24*len(cf))
@@ -169,7 +173,7 @@ def load_site_hour(trange=['2011-1-1', '2011-1-2'],site='kak'):
             store_data(name[-1], data={'x':t, 'y':data_arr[start_time:end_time]},attr_dict={'acknowledgement':ack("site")})
             options(name[-1], "legend_names", "X[nT]")
             options(name[-1], "ytitle", site2[ss] + os.linesep +"(hourly)")
-            #options(name[-1], "Color", (0,255,0))
+            clist.append('cyan')
             options(name[-1], "Color", ["cyan"])
         if(data[3].count("Y")>1):
             cf=np.array(Y_data)
@@ -179,6 +183,7 @@ def load_site_hour(trange=['2011-1-1', '2011-1-2'],site='kak'):
             store_data(name[-1], data={'x':t, 'y':data_arr[start_time:end_time]},attr_dict={'acknowledgement':ack("site")})
             options(name[-1], "legend_names", "Y[nT]")
             options(name[-1], "Color", ["yellow"])
+            clist.append("yellow")
             options(name[-1], "ytitle", site2[ss] + os.linesep +"(gourly)")
         if(data[3].count("Z")>1):
             cf=np.array(Z_data)
@@ -188,12 +193,14 @@ def load_site_hour(trange=['2011-1-1', '2011-1-2'],site='kak'):
             options(name[-1], "legend_names","Z[nT]")
             options(name[-1], "ytitle", site2[ss] + os.linesep +"(hourly)")
             options(name[-1], "Color", ["red"])
+            clist.append("red")
         if(data[3].count("F")>1):
             cf=np.array(F_data)
             data_arr=cf.reshape(24*len(cf))
             name.append("wdc_mag_"+site2[ss]+"_1hr_F")
             store_data(name[-1], data={'x':t, 'y':data_arr[start_time:end_time]},attr_dict={'acknowledgement':ack("site")})
             options(name[-1], "legend_names", "F[nT]")
+            clist.append('black')
             options(name[-1], "ytitle", site2[ss] + os.linesep +"(1-min)")
         data1=[]
         for na in name:
@@ -205,5 +212,6 @@ def load_site_hour(trange=['2011-1-1', '2011-1-2'],site='kak'):
         store_data(name_site,data={'x':t, 'y':data2},attr_dict={'acknowledgement':ack("site")})
         options(name_site, "legend_names", name)
         options(name_site, "ytitle", site2[ss]+os.linesep+"(hourly)")
+        options(name_site, "Color", clist)
         #options(name_site, "ysubtitle", "(nT)")
         
