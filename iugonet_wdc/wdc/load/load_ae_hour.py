@@ -5,7 +5,7 @@ from pyspedas.utilities.time_string import time_string
 from pyspedas.utilities.dailynames  import dailynames
 from pytplot import store_data, options
 from .download.download_ae_min import download_ae_min
-
+from .iug_load_gmag_wdc_acknowledgement import iug_wdc_ack as ack
 
 def load_hour(local_file):
 
@@ -69,7 +69,7 @@ def load_ae_hour(trange, level='provisional') :
     t, data       = load_hour(local_file_ae)
     #
     tname = "wdc_mag_ae_1hr" + '_' + level
-    store_data(tname, data={'x':t, 'y':data})
+    store_data(tname, data={'x':t, 'y':data},attr_dict={'acknowledgement':ack("ae")})
     # options
     options(tname, 'name', 'AE')
     options(tname, 'ytitle', 'AE(hourly)'+ os.linesep + level)
@@ -81,7 +81,7 @@ def load_ae_hour(trange, level='provisional') :
     t, data       = load_hour(local_file_al)
     #
     tname = "wdc_mag_al_1hr" + '_' + level
-    store_data(tname, data={'x':t, 'y':data})
+    store_data(tname, data={'x':t, 'y':data},attr_dict={'acknowledgement':ack("al")})
     # options
     options(tname, 'name', 'AL')
     options(tname, 'ytitle', 'AL(hourly)' + os.linesep + level)
@@ -94,7 +94,7 @@ def load_ae_hour(trange, level='provisional') :
     t, data       = load_hour(local_file_ao)
     #
     tname = "wdc_mag_ao_1hr" + '_' + level
-    store_data(tname, data={'x':t, 'y':data})
+    store_data(tname, data={'x':t, 'y':data},attr_dict={'acknowledgement':ack("ao")})
     # options
     options(tname, 'name', 'ao')
     options(tname, 'ytitle', 'AO(hourly)' + os.linesep + level)
@@ -107,7 +107,7 @@ def load_ae_hour(trange, level='provisional') :
     t, data       = load_hour(local_file_au)
     #
     tname = "wdc_mag_au_1hr" + '_' + level
-    store_data(tname, data={'x':t, 'y':data})
+    store_data(tname, data={'x':t, 'y':data},attr_dict={'acknowledgement':ack("au")})
     # options
     options(tname, 'name', 'AU')
     options(tname, 'ytitle', 'AU(hourly)' + os.linesep + level)
