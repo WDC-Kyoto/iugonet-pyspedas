@@ -6,7 +6,7 @@ from pytplot import store_data,tplot_names,get_data,options
 import calendar
 from .download.download_site import download_site
 from .iug_load_gmag_wdc_acknowledgement import iug_wdc_ack as ack
-
+#site
 def load_site_hour(trange=['2011-1-1', '2011-1-2'],site='kak'):
     local_files =download_site(site=site,trange=trange,res="hour")
     #print(local_files)
