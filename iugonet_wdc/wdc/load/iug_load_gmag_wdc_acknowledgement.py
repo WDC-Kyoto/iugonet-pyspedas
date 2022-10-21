@@ -22,10 +22,10 @@ def iug_wdc_ack(site):
     ' Please ask for the information of each observatory to the WDC.'\
     +'The distribution of the data has been partly supported by the IUGONET (Inter-university Upper atmosphere Global Observation NETwork) project (http://www.iugonet.org/) '+\
     'funded by theMinistry of Education, Culture, Sports, Science and Technology (MEXT), Japan.'
-    print("***********")
+#    print("***********")
     if (site=="dst"):
-        print(acknowledg_str_dst)
+        return acknowledg_str_dst
     else:
-        print(acknowledg_str)
-    print("***********")
-    return 0
+        return acknowledg_str
+ #   print("***********")
+ #   return 0
