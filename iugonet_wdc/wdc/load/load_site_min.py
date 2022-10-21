@@ -156,6 +156,8 @@ def load_site_min(trange=['2011-1-1', '2011-1-2'],site='kak'):
 
 
         name=[]
+        name2=[]
+        clist=[]
         if(data[5].count("D")>1):
             cf=np.array(D_data)
             data_arr=cf.reshape(60*24*len(cf))
@@ -164,7 +166,9 @@ def load_site_min(trange=['2011-1-1', '2011-1-2'],site='kak'):
             store_data(name[-1], data={'x':t, 'y':data_arr[start_time:end_time]},attr_dict={'acknowledgement':ack("site")})
 #            options(name[-1], "ysubtitle", "[degree]")
             options(name[-1], "legend_names","D[degree]")
+            name2.append("D[degree]")
             options(name[-1], "Color", ['green'])
+            clist.append("green")
             options(name[-1], "ytitle", site2[ss] + os.linesep +"(1-min)")
         if(data[5].count("H")>1):
             cf=np.array(H_data)
@@ -172,8 +176,10 @@ def load_site_min(trange=['2011-1-1', '2011-1-2'],site='kak'):
             #print(data_arr)
             name.append("wdc_mag_"+site2[ss]+"_1"+res+"_H")
             store_data(name[-1], data={'x':t, 'y':data_arr[start_time:end_time]},attr_dict={'acknowledgement':ack("site")})
+            name2.append( "H[nT]")
             options(name[-1], "legend_names", "H[nT]")
             options(name[-1], "Color", ['blue'])
+            clist.append('blue')
             options(name[-1], "ytitle", site2[ss] + os.linesep +"(1-min)")
         if(data[5].count("I")>1):
             cf=np.array(I_data)
@@ -182,7 +188,9 @@ def load_site_min(trange=['2011-1-1', '2011-1-2'],site='kak'):
             name.append("wdc_mag_"+site2[ss]+"_1"+res+"_I")
             store_data(name[-1], data={'x':t, 'y':data_arr[start_time:end_time]},attr_dict={'acknowledgement':ack("site")})
             options(name[-1], "ytitle", site2[ss] + os.linesep +"(1-min)")
+            name2.append( "I[degree]")
             options(name[-1], "legend_names", "I[degree]")
+            clist.append("magenta")
             options(name[-1], "Color", ['magenta'])
         if(data[5].count("X")>1):
             cf=np.array(X_data)
@@ -191,8 +199,9 @@ def load_site_min(trange=['2011-1-1', '2011-1-2'],site='kak'):
             name.append("wdc_mag_"+site2[ss]+"_1"+res+"_X")
             store_data(name[-1], data={'x':t, 'y':data_arr[start_time:end_time]},attr_dict={'acknowledgement':ack("site")})
             options(name[-1], "legend_names", "X[nT]")
+            name2.append("X[nT]")
             options(name[-1], "ytitle", site2[ss] + os.linesep +"(1-min)")
-            #options(name[-1], "Color", (0,255,0))
+            clist.append("cyan")
             options(name[-1], "Color", ["cyan"])
         if(data[5].count("Y")>1):
             cf=np.array(Y_data)
@@ -200,24 +209,29 @@ def load_site_min(trange=['2011-1-1', '2011-1-2'],site='kak'):
             name.append("wdc_mag_"+site2[ss]+"_1"+res+"_Y")
             store_data(name[-1], data={'x':t, 'y':data_arr[start_time:end_time]},attr_dict={'acknowledgement':ack("site")})
             options(name[-1], "legend_names", "Y[nT]")
+            name2.append("Y[nT]")
             options(name[-1], "Color", ["yellow"])
+            clist.append("yellow")
             options(name[-1], "ytitle", site2[ss] + os.linesep +"(1-min)")   
         if(data[5].count("Z")>1):
             cf=np.array(Z_data)
             data_arr=cf.reshape(60*24*len(cf))
             name.append("wdc_mag_"+site2[ss]+"_1"+res+"_Z")
             store_data(name[-1], data={'x':t, 'y':data_arr[start_time:end_time]},attr_dict={'acknowledgement':ack("site")})
-            options(name[-1], "legend_names","z[nT]")
+            options(name[-1], "legend_names","Z[nT]")
+            name2.append("Z[nT]")
             options(name[-1], "ytitle", site2[ss] + os.linesep +"(1-min)")
             options(name[-1], "Color", ["red"])
+            clist.append("red")
         if(data[5].count("F")>1):
             cf=np.array(F_data)
             data_arr=cf.reshape(60*24*len(cf))
             name.append("wdc_mag_"+site2[ss]+"_1"+res+"_F")
             store_data(name[-1], data={'x':t, 'y':data_arr[start_time:end_time]},attr_dict={'acknowledgement':ack("site")})
             options(name[-1], "legend_names", "F[nT]")
-#            options(name[-1],"ztitle","var_labeltest")
+            name2.append("F[nT]")
             options(name[-1], "ytitle", site2[ss] + os.linesep +"(1-min)")
+            clist.append("black")
         data1=[]
         for na in name:
             data1.append([])
@@ -225,7 +239,7 @@ def load_site_min(trange=['2011-1-1', '2011-1-2'],site='kak'):
         data2=[e for e in zip (*data1)]
         name_site="wdc_mag_"+site2[ss]+"_1"+res
         store_data(name_site, data={'x':t, 'y':data2},attr_dict={'acknowledgement':ack("site")})
-        options(name_site, "legend_names", name)
+        options(name_site, "legend_names", name2)
         #options("site_"+res+'_'+site2[ss], "Color", ['black', 'red'])
         options(name_site, "ytitle", site2[ss]+os.linesep+"(1-min)")
-        options(name_site, "ysubtitle", "[nT]")
+        options(name_site, "Color", clist)
